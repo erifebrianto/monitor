@@ -32,17 +32,7 @@
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo $pppoe['name']; ?></td>
                                         <td><?php echo $pppoe['profile']; ?></td>
-                                        <td>
-                                             <?php
-                                            // Tanggal awal dari variabel $pppoe['last-logged-out'] dalam format "Y-m-d H:i:s"
-                                            $tanggal_awal = $pppoe['last-logged-out'];
-
-                                            // Ubah format tanggal
-                                            $tanggal_ubah = date("H:i:s d-m-Y", strtotime($tanggal_awal));
-
-                                            // Tampilkan hasil
-                                            echo $tanggal_ubah;
-                                            ?>
+                                        <td><?php echo $pppoe['last-logged-out']; ?>                                             
                                         </td>
                                         
                                         <td>Offline</td>
@@ -68,7 +58,14 @@
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
-            "order": [] // Untuk menghapus pengurutan default pada kolom apa pun
+            "order": [], // Untuk menghapus pengurutan default pada kolom apa pun
+            "columns": [
+                null,
+                { "searchable": true }, // Kolom kedua (indeks 1) dapat dicari
+                { "searchable": false }, // Lewati kolom ketiga (indeks 2) dari pencarian
+                { "searchable": false }, // Lewati kolom keempat (indeks 3) dari pencarian
+                { "searchable": false } // Lewati kolom kelima (indeks 4) dari pencarian
+            ]
         });
     });
 </script>
