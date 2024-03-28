@@ -59,46 +59,47 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>PPPOE Service </span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/active_pppoe"><i class="fas fa-plus"></i>
-              <span>PPPOE Aktif</span>
-            </a>
-            <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/pppoe_secrets">
-              <i class="fas fa-list"></i>
-            <span>PPPOE Secret</span>
-          </a>
-          <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/pppoe_offline">
-              <i class="fas fa-list"></i>
-            <span>PPPOE OFFLINE</span>
-          </a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>-->
-
-
+      <?php if ($this->session->userdata('role') == 'client'): ?>
+    <!-- Jika pengguna adalah client, tampilkan hanya menu PPPOE OFFLINE -->
+    <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>PPPOE Service </span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/pppoe_offline">
+                            <i class="fas fa-list"></i>
+                            <span>PPPOE OFFLINE</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        <?php else: ?>
+            <!-- Jika pengguna bukan client, tampilkan semua menu PPPOE -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>PPPOE Service </span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/active_pppoe">
+                            <i class="fas fa-plus"></i>
+                            <span>PPPOE Aktif</span>
+                        </a>
+                        <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/pppoe_secrets">
+                            <i class="fas fa-list"></i>
+                            <span>PPPOE Secret</span>
+                        </a>
+                        <a class="collapse-item" href="<?php echo base_url();?>Service_pppoe/pppoe_offline">
+                            <i class="fas fa-list"></i>
+                            <span>PPPOE OFFLINE</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

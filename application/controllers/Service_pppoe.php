@@ -39,12 +39,12 @@ class Service_pppoe extends CI_Controller {
     // Kirim pemberitahuan ke bot Telegram jika ada pelanggan yang offline
     if (!empty($data['offline_pppoe'])) {
         // Ganti `YOUR_BOT_TOKEN` dan `YOUR_CHAT_ID` dengan token bot dan ID obrolan Telegram Anda
-        $bot_token = '5898186820:AAFte4xnmpB2xnzsaUX_GTVY1g3MkhYkVgM';
-        $chat_id = '-818500402';
+        $bot_token = '6487026754:AAG-7E1ewPnctY0o09gE-q2W-9HZMwzPllo';
+        $chat_id = '-4107206360';
         
-        $message = "Ada pelanggan PPPoE yang offline:\n";
+        $message = "Ada pelanggan PPPoE yang offline:\n%0A";
         foreach ($data['offline_pppoe'] as $pppoe) {
-            $message .= "- Nama: {$pppoe['name']}, Alamat IP: {$pppoe['address']}\n";
+            $message .= "-> {$pppoe['name']}\n%0A";
         }
         
         $url = "https://api.telegram.org/bot{$bot_token}/sendMessage?chat_id={$chat_id}&text={$message}";

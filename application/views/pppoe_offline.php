@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="10">
 
 <div class="container-fluid">
 
@@ -20,7 +21,6 @@
                                 <tr>
                                     <th>Nomer</th>
                                     <th>Nama Pelanggan</th>
-                                    <th>User PPPOE</th>
                                     <th>Paket</th>
                                     <th>Terakhir Offline</th>
                                     <th>Status</th>
@@ -30,10 +30,20 @@
                                 <?php foreach ($offline_pppoe as $index => $pppoe): ?>
                                     <tr>
                                         <td><?php echo $index + 1; ?></td>
-                                        <td><?php echo $pppoe['comment']; ?></td>
                                         <td><?php echo $pppoe['name']; ?></td>
                                         <td><?php echo $pppoe['profile']; ?></td>
-                                        <td><?php echo $pppoe['last-logged-out']; ?></td>
+                                        <td>
+                                             <?php
+                                            // Tanggal awal dari variabel $pppoe['last-logged-out'] dalam format "Y-m-d H:i:s"
+                                            $tanggal_awal = $pppoe['last-logged-out'];
+
+                                            // Ubah format tanggal
+                                            $tanggal_ubah = date("H:i:s d-m-Y", strtotime($tanggal_awal));
+
+                                            // Tampilkan hasil
+                                            echo $tanggal_ubah;
+                                            ?>
+                                        </td>
                                         
                                         <td>Offline</td>
                                     </tr>
@@ -49,3 +59,34 @@
     </div>
 
 </div>
+<!-- Memuat pustaka jQuery dan DataTables -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!-- Skrip untuk inisialisasi DataTables -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+            "order": [] // Untuk menghapus pengurutan default pada kolom apa pun
+        });
+    });
+</script>
+<script>
+    // Fungsi untuk memuat ulang konten secara asinkron
+    function refreshContent() {
+        // Gunakan AJAX untuk memuat ulang konten tanpa perlu me-refresh halaman utuh
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Perbarui konten dengan respons dari server
+                document.getElementById("content").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "url_ke_controller_pppoe_offline", true);
+        xhttp.send();
+    }
+
+    // Atur interval untuk memanggil fungsi refreshContent() setiap 10 detik
+    setInterval(refreshContent, 50000); // 10 detik
+</script>

@@ -17,8 +17,7 @@
                                     <th>NO</th>
                                     <th>Nama</th>
                                     <th>Password</th>
-                                    <th>Profile</th>
-                                    <th>Service</th>
+                                    <th>Profile</th>                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,8 +27,7 @@
                                         <td><?php echo $number++; ?></td>
                                         <td><?php echo $secret['name']; ?></td>
                                         <td><?php echo $secret['password']; ?></td>
-                                        <td><?php echo $secret['profile']; ?></td>
-                                        <td><?php echo $secret['service']; ?></td>
+                                        <td><?php echo $secret['profile']; ?></td>                                        
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -40,3 +38,16 @@
         </div>
     </div>
 </div>
+<!-- Memuat pustaka jQuery dan DataTables -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!-- Skrip untuk inisialisasi DataTables -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+            "order": [] // Untuk menghapus pengurutan default pada kolom apa pun
+        });
+    });
+</script>
