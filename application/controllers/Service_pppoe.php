@@ -4,10 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Service_pppoe extends CI_Controller {
 
     public function __construct() {
-        parent::__construct();
-        // Load model yang dibutuhkan
-        $this->load->model('Mikrotikppp_model');
+    parent::__construct();
+    // Load model yang dibutuhkan
+    $this->load->model('Mikrotikppp_model');
+    $this->load->library('session'); // Load session library
+    
+    // Check if user is not logged in, then redirect to login page
+    if (!$this->session->userdata('logged_in')) {
+        redirect('login');
     }
+}
+
 
     public function active_pppoe() {
         // Mengambil data PPP aktif dari model

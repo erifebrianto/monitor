@@ -4,10 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 
     public function __construct() {
-        parent::__construct();
-        $this->load->model('user_model'); // Load model untuk pengolahan data user
-        $this->load->library('form_validation'); // Load library form validation
+    parent::__construct();
+    $this->load->model('user_model'); // Load model untuk pengolahan data user
+    $this->load->library('form_validation'); // Load library form validation
+    $this->load->library('session'); // Load session library
+    
+    // Check if user is not logged in, then redirect to login page
+    if (!$this->session->userdata('logged_in')) {
+        redirect('login');
     }
+}
+
 
     public function index() {
         $data['title'] = "User List";

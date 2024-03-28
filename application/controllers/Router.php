@@ -7,7 +7,12 @@ class Router extends CI_Controller {
         parent::__construct();
         // Load model yang dibutuhkan
         $this->load->model('Router_model');
-    }
+        $this->load->library('session');
+    // Check if user is not logged in, then redirect to login page
+        if (!$this->session->userdata('logged_in')) {
+            redirect('login');
+        }
+        }
 
     public function index() {
         // Load konfigurasi Mikrotik dari file

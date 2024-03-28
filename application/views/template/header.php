@@ -103,28 +103,31 @@
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#accountid" aria-expanded="true" aria-controls="accountid">
-          <i class="fas fa-cogs"></i>
-          <span>Setting </span>
-        </a>
-        <div id="accountid" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?php echo base_url();?>Router">
-              <i class="fas fa-server"></i>
-              <span>Router Setting</span>
+      <?php if($this->session->userdata('role') == 'admin'): ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#accountid" aria-expanded="true" aria-controls="accountid">
+              <i class="fas fa-cogs"></i>
+              <span>Setting </span>
             </a>
-            <a class="collapse-item" href="<?php echo base_url();?>User">
-              <i class="fas fa-users"></i>
-            <span>All User</span>
-          </a>
-          <a class="collapse-item" href="<?php echo base_url();?>Tambah">
-              <i class="fas fa-user-plus"></i>
-            <span>Tambah User</span>
-          </a>
-          </div>
-        </div>
-      </li>
+            <div id="accountid" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<?php echo base_url();?>Router">
+                  <i class="fas fa-server"></i>
+                  <span>Router Setting</span>
+                </a>
+                <a class="collapse-item" href="<?php echo base_url();?>User">
+                  <i class="fas fa-users"></i>
+                <span>All User</span>
+              </a>
+              <a class="collapse-item" href="<?php echo base_url();?>User/add">
+                  <i class="fas fa-user-plus"></i>
+                <span>Tambah User</span>
+              </a>
+              </div>
+            </div>
+        </li>
+    <?php endif; ?>
+
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
