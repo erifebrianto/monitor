@@ -114,9 +114,13 @@
               <i class="fas fa-server"></i>
               <span>Router Setting</span>
             </a>
-            <a class="collapse-item" href="<?php echo base_url();?>koin">
-              <i class="fas fa-coins"></i>
-            <span>Top UP Saldo</span>
+            <a class="collapse-item" href="<?php echo base_url();?>User">
+              <i class="fas fa-users"></i>
+            <span>All User</span>
+          </a>
+          <a class="collapse-item" href="<?php echo base_url();?>Tambah">
+              <i class="fas fa-user-plus"></i>
+            <span>Tambah User</span>
           </a>
           </div>
         </div>
