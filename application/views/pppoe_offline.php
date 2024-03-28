@@ -57,7 +57,7 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
-            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+            "lengthMenu": [[50, 100, -1], [50, 100, "All"]],
             "order": [], // Untuk menghapus pengurutan default pada kolom apa pun
             "columns": [
                 null,
