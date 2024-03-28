@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="10">
+<meta http-equiv="refresh" content="60000">
 
 <div class="container-fluid">
 
@@ -88,5 +88,5 @@
     }
 
     // Atur interval untuk memanggil fungsi refreshContent() setiap 10 detik
-    setInterval(refreshContent, 50000); // 10 detik
+    setInterval(refreshContent, 60000); // 10 detik
 </script>
