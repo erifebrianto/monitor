@@ -10,7 +10,7 @@ class Mikrotikppp extends CI_Controller {
         $this->load->library('routerosapi');
 
     }
-    public function index() {
+public function index() {
     // Load configuration from config file
     $hostname = $this->config->item('hostname_mikrotik');
     $username = $this->config->item('username_mikrotik');
@@ -56,17 +56,26 @@ class Mikrotikppp extends CI_Controller {
             return strtotime($b['last-logged-out']) - strtotime($a['last-logged-out']);
         });
 
+        // Get Queue information
+        $queue_info = $this->routerosapi->comm('/queue/simple/print');
+        $data['queue_info'] = $queue_info;
+
+        // Pass all data to the views
         $data['ppp_active'] = $ppp_active;
         $data['ppp_secrets'] = $ppp_secrets;
         $data['offline_ppps'] = $offline_ppps;
-        $data['secret_disabled'] = $secret_disabled; // Pass the variable to the view
+        $data['secret_disabled'] = $secret_disabled;
 
-        $this->load->view('ppp_active', $data); // You need to create ppp_active.php view
+        // Load views
+        $this->load->view('ppp_active', $data); // Create ppp_active.php view
         $this->load->view('ppp_secrets', $data);
-        $this->load->view('offline_ppps', $data); // You need to create offline_ppps.php view
+        $this->load->view('offline_ppps', $data); // Create offline_ppps.php view
+        $this->load->view('queue_info', $data); // Create queue_info.php view
 
+        // Disconnect from Mikrotik router
         $this->routerosapi->disconnect();
     }
 }
+
 
 }
